@@ -1,6 +1,6 @@
 import { useState ,useEffect } from 'react'
 import Header from "./components/Header";
-// import Button from "./components/Button";
+
 import Tasks from "./components/Tasks";
 import AddTask from './components/AddTask';
 
@@ -18,19 +18,22 @@ useEffect(() => {
   getTasks()
 }, [])
 
-//fetch tasks
 
-const fetchTasks=async(id) =>{
-  const res = await fetch('http://localhost:5000/tasks/${id}')
-  const data =await res.json()
- return data
+
+// Fetch Tasks
+const fetchTasks = async () => {
+  const res = await fetch('http://localhost:5000/tasks')
+  const data = await res.json()
+
+  return data
 }
 
-//fetch task
-const fetchTask=async() =>{
-  const res = await fetch(`http://localhost:5000/tasks`)
-  const data =await res.json()
- return data
+// Fetch Task
+const fetchTask = async (id) => {
+  const res = await fetch(`http://localhost:5000/tasks/${id}`)
+  const data = await res.json()
+
+  return data
 }
 
 // Add task
@@ -81,12 +84,13 @@ const toggleReminder = async (id) =>{
     headers:{
       'Content-type':'application/json'
     },
-    body: await res.json()
+    body: JSON.stringify(updTask),
   }
   
   
   
   )
+  const data = await res.json()
   setTasks(tasks.map((task)=>task.id===id ? { ...task,
     reminder:!task.reminder} :task
   
@@ -103,7 +107,32 @@ const toggleReminder = async (id) =>{
       
       />):('No Task To Show'
       )}
-   
+    <footer>
+      <p> © | 2021 | aashirwad01</p>
+      <ul className="footer-list">
+        <li>
+          <a className="links" href="https://github.com/aashirwad01" >
+          <img className="img-2" src="https://img.icons8.com/material-two-tone/24/000000/github.png" alt="github"/>
+          </a>
+        </li>
+        
+        <li>
+          <a className="links" href="https://twitter.com/aashirwad_01" >
+          <img className="img-2" src="https://img.icons8.com/material-sharp/24/000000/twitter.png" alt="twitter"/>
+          </a>
+        </li>
+        <li>
+          <a
+            className="links"
+            href="https://www.linkedin.com/in/aashirwadkumar159/"
+            
+          >
+            <img className="img-2" src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="linkedin"/>
+          </a>
+        </li>
+      </ul>
+    </footer>
+     
     </div>
   );
 }

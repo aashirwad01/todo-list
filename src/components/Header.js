@@ -12,7 +12,7 @@ const Header = ({title ,onAdd , showAdd}) => {
         <header className='header'>
             <h1>{title}</h1>
             
-            <Button color={showAdd ?'Red':'Green'} text={showAdd ?'Close Form':'Add Task'} onClick={onAdd}/>
+            <Button color={showAdd ?'Red':'Orange'} text={showAdd ?'Close Form':'Add Task'} onClick={onAdd}/>
         </header>
     )
 }
